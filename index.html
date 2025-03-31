@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Mario Birthday Party Planning</title>
+    <style>
+        :root {
+            --mario-red: #e52521;
+            --luigi-green: #43b047;
+            --mario-blue: #4166f5;
+            --mario-yellow: #fbd000;
+            --question-block: #e9a74c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--mario-red);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/mario_kart_party.jpeg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin: 1.5rem 0;
+            color: var(--mario-red);
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: var(--mario-blue);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .intro p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--mario-red);
+        }
+        
+        .nav-tab {
+            padding: 1rem 1.5rem;
+            margin: 0 0.5rem;
+            background-color: #f0f0f0;
+            border-radius: 5px 5px 0 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .nav-tab:hover {
+            background-color: var(--mario-yellow);
+            color: #333;
+        }
+        
+        .nav-tab.active {
+            background-color: var(--mario-red);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 0 0 5px 5px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .venue-card, .activity-card, .food-card, .entertainment-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .venue-card:hover, .activity-card:hover, .food-card:hover, .entertainment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            color: var(--mario-blue);
+        }
+        
+        .card-price {
+            font-weight: bold;
+            color: var(--mario-red);
+        }
+        
+        .card-details {
+            margin-top: 1rem;
+        }
+        
+        .card-details ul {
+            list-style-type: none;
+            padding-left: 1rem;
+        }
+        
+        .card-details li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .card-details li:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1rem;
+            height: 1rem;
+            background-image: url('images/mario_gold_coins.jpeg');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        
+        .pros-cons {
+            display: flex;
+            margin-top: 1rem;
+        }
+        
+        .pros, .cons {
+            flex: 1;
+            padding: 0.5rem;
+        }
+        
+        .pros h4, .cons h4 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .pros h4 {
+            color: var(--luigi-green);
+        }
+        
+        .cons h4 {
+            color: var(--mario-red);
+        }
+        
+        .pros ul, .cons ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .pros li, .cons li {
+            margin-bottom: 0.3rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .pros li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--luigi-green);
+        }
+        
+        .cons li:before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: var(--mario-red);
+        }
+        
+        .budget-section {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        
+        .budget-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .budget-table th, .budget-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .budget-table th {
+            background-color: var(--mario-blue);
+            color: white;
+        }
+        
+        .budget-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .budget-table tr:hover {
+            background-color: #e9e9e9;
+        }
+        
+        .budget-total {
+            font-weight: bold;
+            background-color: var(--question-block) !important;
+            color: white;
+        }
+        
+        .timeline {
+            margin-top: 2rem;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 2px solid var(--mario-red);
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--mario-blue);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-content {
+            padding-left: 1rem;
+        }
+        
+        .timeline-content ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .timeline-content li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .timeline-content li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--mario-red);
+        }
+        
+        .cta-section {
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background-color: var(--mario-yellow);
+            border-radius: 5px;
+        }
+        
+        .cta-section h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: var(--mario-red);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--mario-blue);
+            transform: scale(1.05);
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links {
+            margin-top: 1rem;
+        }
+        
+        .footer-links a {
+            color: var(--mario-yellow);
+            margin: 0 0.5rem;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 2rem 0;
+        }
+        
+        .gallery-item {
+            width: 30%;
+            margin-bottom: 2rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-caption {
+            padding: 1rem;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .nav-tab {
+                padding: 0.75rem 1rem;
+                margin: 0 0.25rem;
+                font-size: 0.9rem;
+            }
+            
+            .pros-cons {
+                flex-direction: column;
+            }
+            
+            .pros, .cons {
+                margin-bottom: 1rem;
+            }
+            
+            .gallery-item {
+                width: 45%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gallery-item {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-bg"></div>
+        <div class="header-content">
+            <h1>Super Mario Birthday Party</h1>
+            <p>A Complete Planning Guide for Your 4-Year-Old's Special Day</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="intro">
+            <h2>It's-a Party Time!</h2>
+            <p>Welcome to my comprehensive planning guide for a Super Mario themed birthday party for our 4-year-old son. This guide includes venue options, decoration ideas, fun activities, entertainment suggestions, and delicious food recipes to make the celebration on May 10th truly memorable!</p>
+        </div>
+        
+        <div class="image-gallery">
+            <div class="gallery-item">
+                <img src="images/mario_party_decorations.jpeg" alt="Mario Party Decorations">
+                <div class="gallery-caption">Mario Party Decorations</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/mario_kart_party.jpeg" alt="Mario Kart Party Theme">
+                <div class="gallery-caption">Mario Kart Racing Theme</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/mario_party_table.webp" alt="Mario Party Table Setup">
+                <div class="gallery-caption">Mario Party Table Setup</div>
+            </div>
+        </div>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active" onclick="openTab(event, 'venues')">Venues</div>
+            <div class="nav-tab" onclick="openTab(event, 'decorations')">Decorations</div>
+            <div class="nav-tab" onclick="openTab(event, 'activities')">Activities</div>
+            <div class="nav-tab" onclick="openTab(event, 'entertainment')">Entertainment</div>
+            <div class="nav-tab" onclick="openTab(event, 'food')">Food & Drinks</div>
+            <div class="nav-tab" onclick="openTab(event, 'budget')">Budget</div>
+            <div class="nav-tab" onclick="openTab(event, 'timeline')">Timeline</div>
+        </div>
+        
+        <div id="venues" class="tab-content active">
+            <h2>Venue Options</h2>
+            <p>Based on your preference for indoor and outdoor options, I've researched several venues that would be perfect for our Mario-themed party.</p>
+            
+            <div class="venue-card">
+                <div class="card-header">
+                    <h3 class="card-title">CrossCreek HOA Clubhouse</h3>
+                    <span class="card-price">$50-150</span>
+                </div>
+                <p>Located near your home at 11335 Impressive Way, this venue offers both indoor community center space and an adjacent outdoor area with a pool.</p>
+                <div class="card-details">
+                    <ul>
+                        <li>Capacity: Approximately 30-40 people</li>
+                        <li>Rental Duration: Typically 4 hours</li>
+                        <li>Amenities: Indoor space, outdoor area, pool access</li>
+                    </ul>
+                </div>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>Pros</h4>
+                        <ul>
+                            <li>Convenient location</li>
+                            <li>Familiar environment</li>
+                            <li>Lower cost as residents</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>Cons</h4>
+                        <ul>
+                            <li>May need to book well in advance</li>
+                            <li>Limited decorating options</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="venue-card">
+                <div class="card-header">
+                    <h3 class="card-title">Pearsall Park (with Freewheel Bike Park)</h3>
+                    <span class="card-price">$60-120</span>
+                </div>
+                <p>Located at 4838 Old Pearsall Rd, this park features the Freewheel Bike Park that you mentioned for the race car theme, plus a splash pad for water fun.</p>
+                <div class="card-details">
+                    <ul>
+                        <li>Capacity: Unlimited for general park use; pavilions can be reserved</li>
+                        <li>Rental Duration: 4 hours for pavilion</li>
+                        <li>Amenities: Race track area, splash pad, open spaces</li>
+                    </ul>
+                </div>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>Pros</h4>
+                        <ul>
+                            <li>Has the race car element you mentioned</li>
+                            <li>Plenty of space for activities</li>
+                            <li>Affordable pavilion rental</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>Cons</h4>
+                        <ul>
+                            <li>Weather-dependent</li>
+                            <li>Limited indoor options</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="venue-card">
+                <div class="card-header">
+                    <h3 class="card-title">YMCA O.P. Schnabel Park</h3>
+                    <span class="card-price">$150-300</span>
+                </div>
+                <p>Located at 9606 Bandera Rd, this YMCA facility offers both indoor spaces and outdoor areas, including pool access.</p>
+                <div class="card-details">
+                    <ul>
+                        <li>Capacity: Various rooms available for different group sizes</li>
+                        <li>Rental Duration: 2 hours standard (can extend)</li>
+                        <li>Amenities: Indoor facilities, outdoor areas, pool</li>
+                    </ul>
+                </div>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>Pros</h4>
+                        <ul>
+                            <li>Professional staff assistance</li>
+                            <li>Pool option</li>
+                            <li>Indoor/outdoor flexibility</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>Cons</h4>
+                        <ul>
+                            <li>Higher cost</li>
+                            <li>May have time limitations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="venue-card">
+                <div class="card-header">
+                    <h3 class="card-title">City of San Antonio Community Centers</h3>
+                    <span class="card-price">$50-150</span>
+                </div>
+                <p>Various locations throughout San Antonio offering indoor facilities with adjacent outdoor spaces.</p>
+                <div class="card-details">
+                    <ul>
+                        <li>Capacity: 30-100 depending on location</li>
+                        <li>Rental Duration: 4 hours</li>
+                        <li>Amenities: Clean facilities, professional management</li>
+                    </ul>
+                </div>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h4>Pros</h4>
+                        <ul>
+                            <li>Affordable</li>
+                            <li>Professional management</li>
+                            <li>Clean facilities</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h4>Cons</h4>
+                        <ul>
+                            <li>May have strict rules about decorations</li>
+                            <li>Restrictions on outside vendors</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>My Recommendation</h3>
+            <p>Based on your preference for indoor/outdoor options and the race car element, I recommend either:</p>
+            <ol>
+                <li><strong>Pearsall Park with Freewheel Bike Park</strong> - Perfect for the race car theme with plenty of space for activities.</li>
+                <li><strong>CrossCreek HOA Clubhouse</strong> - Convenient, potentially more affordable, with indoor space and pool access.</li>
+            </ol>
+        </div>
+        
+        <div id="decorations" class="tab-content">
+            <h2>Mario-Themed Decorations</h2>
+            <p>Transform your venue into the Mushroom Kingdom with these decoration ideas!</p>
+            
+            <h3>Theme Elements</h3>
+            <ul>
+                <li>Mario character cutouts and standees</li>
+                <li>Question block decorations (hanging and tabletop)</li>
+                <li>Gold coin decorations</li>
+                <li>Mushroom Kingdom elements</li>
+                <li>Warp pipe table centerpieces</li>
+                <li>Mario-themed balloons (red, green, blue, yellow)</li>
+                <li>Checkered racing flags (for Mario Kart theme)</li>
+            </ul>
+            
+            <h3>DIY Decoration Ideas</h3>
+            <div class="activity-card">
+                <div class="card-header">
+                    <h3 class="card-title">Question Block Favor Boxes</h3>
+                    <span class="card-price">$15</span>
+                </div>
+                <p>Create favor boxes that look like the iconic question blocks from the game.</p>
+                <div class="card-details">
+                    <h4>Materials:</h4>
+                    <ul>
+                        <li>Yellow gift boxes</li>
+                        <li>Black cardstock for question marks</li>
+                        <li>Tape or glue</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="activity-card">
+                <div class="card-header">
+                    <h3 class="card-title">Warp Pipe Centerpieces</h3>
+                    <span class="card-price">$10</span>
+                </div>
+                <p>Create table centerpieces that look like the warp pipes from Mario games.</p>
+                <div class="card-details">
+                    <h4>Materials:</h4>
+                    <ul>
+                        <li>Green plastic cups or PVC pipe sections</li>
+                        <li>Green paint</li>
+                        <li>Optional: small Mario figurines to place on top</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="activity-card">
+                <div class="card-header">
+                    <h3 class="card-title">Gold Coin Garland</h3>
+                    <span class="card-price">$8</span>
+                </div>
+                <p>Create a garland of gold coins to hang around the party space.</p>
+                <div class="card-details">
+                    <h4>Materials:</h4>
+                    <ul>
+                        <li>Gold cardstock</li>
+                        <li>String</li>
+                        <li>Hole punch</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Store-Bought Options</h3>
+            <div class="activity-card">
+                <div class="card-header">
+                    <h3 class="card-title">Super Mario Party Decoration Kit</h3>
+                    <span class="card-price">$25-35</span>
+                </div>
+                <p>Complete kit with various Mario-themed decorations.</p>
+                <div class="card-details">
+                    <h4>Includes:</h4>
+                    <ul>
+                        <li>Banner</li>
+                        <li>Balloons</li>
+                        <li>Cake toppers</li>
+                        <li>Cupcake wrappers</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="activity-card">
+                <div class="card-header">
+                    <h3 class="card-title">Super Mario Character Standees</h3>
+                    <span class="card-price">$30-40</span>
+                </div>
+                <p>Life-sized standees of Mario characters.</p>
+                <div class="card-details">
+                    <h4>Includes:</h4>
+                    <ul>
+                        <li>Set of 4 main characters</li>
+                        <li>Durable cardboard construction</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Total Decoration Budget</h3>
+            <ul>
+                <li>DIY Options: $65-85</li>
+                <li>Store-Bought Options: $90-120</li>
+                <li>Recommended Mix: $75-100</li>
+            </ul>
+        </div>
+        
+        <div id="activities" class="tab-content">
+            <h2>Mario-Themed Activities</h2>
+            <p>Keep the kids entertained with these fun Mario-inspired activities!</p>
+            
+            <div class="activity-card">
+                <div class="card-header">
+                    <h3 class="card-title">Super Mario Obstacle Course</h3>
+                    <span class="card-price">$40-50</span>
+                </div>
+                <p>Create a series of obstacles representing Mario game elements for kids to navigate through.</p>
+                <div class="card-details">
+                    <h4>Materials Needed:</h4>
+                    <ul>
+                        <li>Cardboard boxes painted as blocks ($10)</li>
+                        <li>Hula hoops for coin jumping ($15)</li>
+                        <li>Pool noodles for pipes ($10)</li>
+                        <li>Balloon "Goombas" to knock over ($5)</li>
+                    </ul>
+                    <h4>Instructions:</h4>
+                    <p>Kids navigate through obstacles, collecting "coins" (gold chocolate coins) along the way. Perfect for 4-year-olds with adult supervision.</p>
+                </div>
+            </div>
+            
+            <div class="activity-card">
+                <div class="card-header">
+                    <h3 class="card-title">Mario Kart Races</h3>
+                    <span class="card-price">$35-45</span>
+                </div>
+                <p>Create a simple race track with cones or chalk where kids can race like in Mario Kart.</p>
+                <div class="card-details">
+                    <h4>Materials Needed:</h4>
+                    <ul>
+                        <li>Traffic cones or sidewalk chalk ($10)</li>
+                        <li>Ride-on cars or decorated scooters (can use existing toys)</li>
+                        <li>Character hats for racers ($20)</li>
+                        <li>Checkered flags ($5)</li>
+                    </ul>
+                    <h4>Instructions:</h4>
+                    <p>Set up a small race course where kids can take turns racing. This aligns perfectly with Rachel's vision of kids racing in little cars at Freewheel Bike Park.</p>
+                </div>
+            </div>
+            
+            <div class="activity-card">
+                <div class="card-header">
+                    <h3 class="card-title">Character Dress-Up Station</h3>
+                    <span class="card-price">$45-55</span>
+                </div>
+                <p>Create a station with Mario character costume elements for dress-up and photos.</p>
+                <div class="card-details">
+                    <h4>Materials Needed:</h4>
+                    <ul>
+                        <li>Red and green hats ($15)</li>
+                        <li>Fake mustaches ($8)</li>
+                        <li>Princess crowns ($12)</li>
+                        <li>Props for photos ($10)</li>
+                    </ul>
+                    <h4>Instructions:</h4>
+                    <p>Kids can dress up as their favorite character for photos. This is a great activity for 4-year-olds who love pretend play.</p>
+                </div>
+            </div>
+            
+            <div class="activity-card">
+                <div class="card-header">
+                    <h3 class="card-title">Yoshi Egg Hunt</h3>
+                    <span class="card-price">$45-55</span>
+                </div>
+                <p>Hide plastic eggs around the party area for kids to find.</p>
+                <div class="card-details">
+                    <h4>Materials Needed:</h4>
+                    <ul>
+                        <li>Green plastic eggs ($10)</li>
+                        <li>Small prizes or candy to fill eggs ($15)</li>
+                        <li>Decorative basket for each child ($20)</li>
+                    </ul>
+                    <h4>Instructions:</h4>
+                    <p>Kids search for hidden "Yoshi eggs" containing treats. This is perfect for 4-year-olds who love scavenger hunts.</p>
+                </div>
+            </div>
+            
+            <div class="activity-card">
+                <div class="card-header">
+                    <h3 class="card-title">Craft Station</h3>
+                    <span class="card-price">$25-35</span>
+                </div>
+                <p>Set up a table with craft supplies for Mario-themed crafts.</p>
+                <div class="card-details">
+                    <h4>Materials Needed:</h4>
+                    <ul>
+                        <li>Pre-cut Mario masks templates ($5)</li>
+                        <li>Craft sticks ($3)</li>
+                        <li>Markers, glue, scissors ($10)</li>
+                        <li>Star wand materials ($7)</li>
+                    </ul>
+                    <h4>Instructions:</h4>
+                    <p>Kids can create their own Mario masks or power-up wands. This is a great quiet activity for when kids need a break from more active play.</p>
+                </div>
+            </div>
+            
+            <h3>Recommended Activities</h3>
+            <p>For a 4-year-old's party, we recommend choosing 2-3 activities from the list above. The Mario Kart Races would be especially appropriate given Rachel's vision for the race cars at Freewheel Bike Park.</p>
+            
+            <h3>Total Activities Budget</h3>
+            <ul>
+                <li>All Activities: $190-240</li>
+                <li>Recommended Selection (3 activities): $110-150</li>
+            </ul>
+        </div>
+        
+        <div id="entertainment" class="tab-content">
+            <h2>Entertainment Options</h2>
+            <p>Add extra fun to the party with these entertainment options!</p>
+            
+            <h3>Bounce Castle Options</h3>
+            <div class="entertainment-card">
+                <div class="card-header">
+                    <h3 class="card-title">Freedom FUN USA - Freedom Extreme Combo</h3>
+                    <span class="card-price">$349</span>
+                </div>
+                <div class="card-details">
+                    <ul>
+                        <li>Size: 30x15 ft</li>
+                        <li>Capacity: 7 kids at once</li>
+                        <li>Features: Dual lane slide (wet or dry option)</li>
+                        <li>Includes: Delivery, set-up & pick-up</li>
+                        <li>Optional: Attendant for $100/hour</li>
+                        <li>Contact: (210) 890-4386</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="entertainment-card">
+                <div class="card-header">
+                    <h3 class="card-title">Born2Bounce - Bounce House Options</h3>
+                    <span class="card-price">$265-399</span>
+                </div>
+                <div class="card-details">
+                    <ul>
+                        <li>Basic Bounce House: $265</li>
+                        <li>Bounce House with Slide: $399</li>
+                        <li>Website: born2bouncepartyrental.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Face Painting & Balloon Twisting</h3>
+            <div class="entertainment-card">
+                <div class="card-header">
+                    <h3 class="card-title">GigSalad - Face Painter & Balloon Twister</h3>
+                    <span class="card-price">$150-200</span>
+                </div>
+                <div class="card-details">
+                    <ul>
+                        <li>Face Painter: $150-200 for 2 hours</li>
+                        <li>Balloon Twister: $177 for 2 hours</li>
+                        <li>Many providers offer combination services</li>
+                        <li>Website: gigsalad.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Concession Machines</h3>
+            <div class="entertainment-card">
+                <div class="card-header">
+                    <h3 class="card-title">Al's Funhouses - Cotton Candy Machine</h3>
+                    <span class="card-price">$80</span>
+                </div>
+                <div class="card-details">
+                    <ul>
+                        <li>Includes: 50 cones and a carton of flavor choice</li>
+                        <li>Flavors: Pink vanilla or blue raspberry</li>
+                        <li>Serves: 50-60 cones</li>
+                        <li>Contact: 210-620-4373</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="entertainment-card">
+                <div class="card-header">
+                    <h3 class="card-title">E&E Rentals - Concession Machines</h3>
+                    <span class="card-price">$64.99</span>
+                </div>
+                <div class="card-details">
+                    <ul>
+                        <li>Cotton Candy Machine: $64.99</li>
+                        <li>Hawaiian Ice Snow Cone Machine: $64.99</li>
+                        <li>Website: enerentals.net</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Recommended Entertainment Packages</h3>
+            <div class="entertainment-card">
+                <div class="card-header">
+                    <h3 class="card-title">Basic Package</h3>
+                    <span class="card-price">$465-574</span>
+                </div>
+                <div class="card-details">
+                    <ul>
+                        <li>Bounce House: $265-349</li>
+                        <li>Face Painter: ~$150 for 2 hours</li>
+                        <li>DIY Concessions: $50-75 for supplies</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="entertainment-card">
+                <div class="card-header">
+                    <h3 class="card-title">Premium Package</h3>
+                    <span class="card-price">$714-794</span>
+                </div>
+                <div class="card-details">
+                    <ul>
+                        <li>Bounce House with Slide: $349-399</li>
+                        <li>Face Painter & Balloon Twister Combo: ~$250 for 2 hours</li>
+                        <li>Cotton Candy Machine Rental: $65-80</li>
+                        <li>Snow Cone Machine Rental: $50-65</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="entertainment-card">
+                <div class="card-header">
+                    <h3 class="card-title">Full-Service Package</h3>
+                    <span class="card-price">$899-1049</span>
+                </div>
+                <div class="card-details">
+                    <ul>
+                        <li>Bounce House with Slide: $349-399</li>
+                        <li>Face Painter & Balloon Twister Combo: ~$250 for 2 hours</li>
+                        <li>Mobile Cotton Candy & Shaved Ice Cart Service: ~$300-400 for 2 hours</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="food" class="tab-content">
+            <h2>Mario-Themed Food & Drinks</h2>
+            <p>Delight your guests with these themed treats!</p>
+            
+            <div class="food-card">
+                <div class="card-header">
+                    <h3 class="card-title">Super Star Cookies</h3>
+                    <span class="card-price">$16.75</span>
+                </div>
+                <p>Star-shaped sugar cookies with yellow frosting, just like the power stars in Mario games!</p>
+                <div class="card-details">
+                    <h4>Ingredients:</h4>
+                    <ul>
+                        <li>3 cups all-purpose flour</li>
+                        <li>1/2 teaspoon baking powder</li>
+                        <li>Pinch of salt</li>
+                        <li>1 cup (2 sticks) unsalted butter, softened</li>
+                        <li>1 cup sugar</li>
+                        <li>1 egg</li>
+                        <li>1 teaspoon vanilla extract</li>
+                        <li>Yellow sanding sugar (for decoration)</li>
+                    </ul>
+                    <h4>Kid-Friendly Adaptations:</h4>
+                    <ul>
+                        <li>Pre-measure ingredients for 4-year-olds to pour and mix</li>
+                        <li>Let kids help sprinkle the yellow sugar</li>
+                        <li>Use pre-made sugar cookie dough to simplify the process</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="food-card">
+                <div class="card-header">
+                    <h3 class="card-title">Power-Up Fruit Cups</h3>
+                    <span class="card-price">$31.00</span>
+                </div>
+                <p>Colorful fruit cups that give kids a healthy "power-up" during the party!</p>
+                <div class="card-details">
+                    <h4>Ingredients:</h4>
+                    <ul>
+                        <li>Assorted colorful fruits (strawberries, kiwi, pineapple, blueberries, grapes)</li>
+                        <li>Clear plastic cups</li>
+                        <li>Optional toppings: whipped cream, granola, chocolate chips</li>
+                        <li>Gold coins (chocolate) for decoration</li>
+                    </ul>
+                    <h4>Kid-Friendly Adaptations:</h4>
+                    <ul>
+                        <li>Pre-cut all fruits for safety</li>
+                        <li>Use mustache stickers on cups for a Mario/Luigi theme</li>
+                        <li>Add white chocolate chips to strawberry garnishes to make them look like Piranha Plants</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="food-card">
+                <div class="card-header">
+                    <h3 class="card-title">Mario Pizza Station</h3>
+                    <span class="card-price">$34.00</span>
+                </div>
+                <p>Let kids build their own mini pizzas - perfect for Italian plumbers!</p>
+                <div class="card-details">
+                    <h4>Ingredients:</h4>
+                    <ul>
+                        <li>Refrigerated biscuit dough (for individual pizza crusts)</li>
+                        <li>Squeezable pizza sauce</li>
+                        <li>Shredded mozzarella cheese</li>
+                        <li>Pepperoni</li>
+                        <li>Assorted toppings (bell peppers, olives, mushrooms)</li>
+                    </ul>
+                    <h4>Kid-Friendly Adaptations:</h4>
+                    <ul>
+                        <li>Use squeezable sauce bottles to minimize mess</li>
+                        <li>Pre-portion cheese and toppings for easier handling</li>
+                        <li>Suggest Mario character designs (red pepperoni for Mario's hat, olive eyes, etc.)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="food-card">
+                <div class="card-header">
+                    <h3 class="card-title">Luigi Lemonade & Mario Punch</h3>
+                    <span class="card-price">$30.00</span>
+                </div>
+                <p>Colorful themed drinks that kids will love!</p>
+                <div class="card-details">
+                    <h4>Luigi Lemonade Ingredients:</h4>
+                    <ul>
+                        <li>1 gallon lemonade</li>
+                        <li>Green food coloring</li>
+                        <li>2 liters ginger ale</li>
+                        <li>46 oz pineapple juice (1 large can)</li>
+                    </ul>
+                    <h4>Mario Punch Ingredients:</h4>
+                    <ul>
+                        <li>1 gallon fruit punch</li>
+                        <li>2 liters lemon-lime soda</li>
+                        <li>46 oz pineapple juice (1 large can)</li>
+                    </ul>
+                    <h4>Kid-Friendly Adaptations:</h4>
+                    <ul>
+                        <li>Use red cups for Mario Punch and green cups for Luigi Lemonade</li>
+                        <li>Add fun straws with Mario character toppers</li>
+                        <li>Create printable drink labels</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Birthday Cake Options</h3>
+            <div class="food-card">
+                <div class="card-header">
+                    <h3 class="card-title">Question Block Cake</h3>
+                    <span class="card-price">$40-60 custom / $25-30 DIY</span>
+                </div>
+                <p>A yellow cake decorated as a Mario question block, potentially filled with candy as a "piñata cake".</p>
+            </div>
+            
+            <div class="food-card">
+                <div class="card-header">
+                    <h3 class="card-title">Mario Character Cake</h3>
+                    <span class="card-price">$50-80 custom / $30-40 DIY</span>
+                </div>
+                <p>A cake shaped or decorated as Mario, Luigi, or another character from the games.</p>
+            </div>
+            
+            <div class="food-card">
+                <div class="card-header">
+                    <h3 class="card-title">Super Mushroom Cake</h3>
+                    <span class="card-price">$40-60 custom / $25-35 DIY</span>
+                </div>
+                <p>A cake designed to look like the iconic red and white mushrooms from the game.</p>
+            </div>
+            
+            <h3>Total Food Budget</h3>
+            <ul>
+                <li>All Food Items: $111.50</li>
+                <li>Cake: $25-80 (depending on DIY or custom)</li>
+                <li>Total: $136.50-191.50</li>
+            </ul>
+        </div>
+        
+        <div id="budget" class="tab-content">
+            <h2>Budget Breakdown</h2>
+            <p>Here's a comprehensive breakdown of estimated costs for the Mario-themed birthday party.</p>
+            
+            <div class="budget-section">
+                <table class="budget-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Low Estimate</th>
+                            <th>High Estimate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Venue</td>
+                            <td>$50</td>
+                            <td>$300</td>
+                        </tr>
+                        <tr>
+                            <td>Decorations</td>
+                            <td>$75</td>
+                            <td>$120</td>
+                        </tr>
+                        <tr>
+                            <td>Activities</td>
+                            <td>$110</td>
+                            <td>$240</td>
+                        </tr>
+                        <tr>
+                            <td>Entertainment</td>
+                            <td>$465</td>
+                            <td>$1049</td>
+                        </tr>
+                        <tr>
+                            <td>Food & Drinks</td>
+                            <td>$136.50</td>
+                            <td>$191.50</td>
+                        </tr>
+                        <tr class="budget-total">
+                            <td>TOTAL</td>
+                            <td>$836.50</td>
+                            <td>$1900.50</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h3>Budget-Saving Tips</h3>
+            <ul>
+                <li>Use the CrossCreek HOA clubhouse to save on venue costs</li>
+                <li>Mix DIY and store-bought decorations</li>
+                <li>Choose 2-3 activities instead of all 5</li>
+                <li>Opt for the Basic Entertainment Package</li>
+                <li>Make the cake yourself instead of ordering custom</li>
+            </ul>
+            
+            <h3>Splurge Options</h3>
+            <ul>
+                <li>Full-service entertainment package with bounce house and professional services</li>
+                <li>Custom-designed Mario cake from a specialty bakery</li>
+                <li>Professional photographer to capture the event</li>
+                <li>Take-home gift bags with Mario-themed toys and treats</li>
+            </ul>
+        </div>
+        
+        <div id="timeline" class="tab-content">
+            <h2>Planning Timeline</h2>
+            <p>Follow this timeline to ensure everything is ready for the big day!</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">4 Weeks Before (Mid-April)</div>
+                    <div class="timeline-content">
+                        <ul>
+                            <li>Confirm venue reservation for May 10th</li>
+                            <li>Send invitations to guests</li>
+                            <li>Order/purchase basic decorations</li>
+                            <li>Book entertainment (bounce house, face painter, etc.)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2 Weeks Before (Late April)</div>
+                    <div class="timeline-content">
+                        <ul>
+                            <li>Confirm RSVPs</li>
+                            <li>Purchase non-perishable food items</li>
+                            <li>Gather materials for activities</li>
+                            <li>Order cake or purchase cake ingredients</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">1 Week Before (Early May)</div>
+                    <div class="timeline-content">
+                        <ul>
+                            <li>Confirm all vendor bookings</li>
+                            <li>Create detailed shopping list for perishables</li>
+                            <li>Prepare any DIY decorations</li>
+                            <li>Plan party day timeline</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">1-2 Days Before</div>
+                    <div class="timeline-content">
+                        <ul>
+                            <li>Purchase perishable food items</li>
+                            <li>Bake cookies and prepare any make-ahead food</li>
+                            <li>Set up decorations that can be done in advance</li>
+                            <li>Confirm final headcount</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Party Day (May 10th)</div>
+                    <div class="timeline-content">
+                        <ul>
+                            <li>Set up remaining decorations</li>
+                            <li>Prepare food stations</li>
+                            <li>Welcome entertainment vendors</li>
+                            <li>Enjoy the party!</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <h2>Ready to Make This Mario Party a Reality?</h2>
+            <p>This guide provides a comprehensive plan for creating a memorable Mario-themed birthday party for your 4-year-old son. All elements can be adjusted based on your preferences, budget, and final venue selection.</p>
+            <p>The next step is to decide on your venue and start making reservations for May 10th!</p>
+            <a href="#venues" class="cta-button" onclick="openTab(event, 'venues')">Review Venue Options</a>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p>Created with ❤️ for your son's special day!</p>
+            <p>All Super Mario characters and elements are property of Nintendo.</p>
+            <div class="footer-links">
+                <a href="#venues">Venues</a>
+                <a href="#decorations">Decorations</a>
+                <a href="#activities">Activities</a>
+                <a href="#entertainment">Entertainment</a>
+                <a href="#food">Food</a>
+                <a href="#budget">Budget</a>
+                <a href="#timeline">Timeline</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            
+            tablinks = document.getElementsByClassName("nav-tab");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+        
+        // Handle anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                const tabElement = document.getElementById(hash);
+                if (tabElement) {
+                    const tabLinks = document.getElementsByClassName("nav-tab");
+                    for (let i = 0; i < tabLinks.length; i++) {
+                        if (tabLinks[i].textContent.toLowerCase().includes(hash.toLowerCase())) {
+                            openTab({currentTarget: tabLinks[i]}, hash);
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            const footerLinks = document.querySelectorAll('.footer-links a');
+            footerLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const tabLinks = document.getElementsByClassName("nav-tab");
+                    for (let i = 0; i < tabLinks.length; i++) {
+                        if (tabLinks[i].textContent.toLowerCase().includes(targetId.toLowerCase())) {
+                            openTab({currentTarget: tabLinks[i]}, targetId);
+                            break;
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
